@@ -12,5 +12,6 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 public class Customer extends Person {
+    private double wallet;
     private Membership member;
 }
