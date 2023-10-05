@@ -22,7 +22,6 @@ public class PersonRepository {
             .name("Budi")
             .address("Bandung")
             .member(member1)
-            .wallet(1_000_000)
             .build();
 
         Person customer2 = Customer.builder()
@@ -30,7 +29,6 @@ public class PersonRepository {
             .name("Aceng")
             .address("Cimahi")
             .member(member2)
-            .wallet(1_000_000)
             .build();
 
         Person customer3 = Customer.builder()
@@ -38,7 +36,6 @@ public class PersonRepository {
             .name("Nur")
             .address("Garut")
             .member(member3)
-            .wallet(1_000_000)
             .build();
 
         Person customer4 = Customer.builder()
@@ -46,7 +43,6 @@ public class PersonRepository {
             .name("Iwan")
             .address("Sukabumi")
             .member(member2)
-            .wallet(1_000_000)
             .build();
         
         Person employee1 = Employee.builder()
