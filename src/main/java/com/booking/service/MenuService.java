@@ -14,6 +14,8 @@ public class MenuService {
     private static List<Person> personList = PersonRepository.getAllPerson();
     private static List<Service> serviceList = ServiceRepository.getAllService();
     private static List<Reservation> reservationList = new ArrayList<>();
+    private static PrintService printService = new PrintService();
+    private static ReservationService reservationService = new ReservationService();
     private static Scanner input = new Scanner(System.in);
 
     public static void mainMenu() {
@@ -37,29 +39,30 @@ public class MenuService {
                         switch (optionSubMenu) {
                             case 1:
                                 // panggil fitur tampilkan recent reservation
+                                printService.showRecentReservation(reservationList);
                                 break;
                             case 2:
-                                // panggil fitur tampilkan semua customer
+                                printService.showAllCustomer(personList);
                                 break;
                             case 3:
-                                // panggil fitur tampilkan semua employee
+                                printService.showAllEmployee(personList);
                                 break;
                             case 4:
-                                // panggil fitur tampilkan history reservation + total keuntungan
+                                printService.showHistoryReservation(reservationList);
                                 break;
                             case 0:
-                                backToSubMenu = false;
+                                backToSubMenu = true;
                         }
                     } while (!backToSubMenu);
                     break;
                 case 2:
-                    // panggil fitur menambahkan reservation
+                    reservationService.createReservation(personList,serviceList,reservationList);
                     break;
                 case 3:
-                    // panggil fitur mengubah workstage menjadi finish/cancel
+                    reservationService.editReservationWorkstage(reservationList);
                     break;
                 case 0:
-                    backToMainMenu = false;
+                    backToMainMenu = true;
                     break;
             }
         } while (!backToMainMenu);

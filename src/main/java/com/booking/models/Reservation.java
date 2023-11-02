@@ -29,9 +29,25 @@ public class Reservation {
         this.services = services;
         this.reservationPrice = calculateReservationPrice();
         this.workstage = workstage;
-    };
+        this.getCustomer().setWallet(getCustomer().getWallet()-calculateReservationPrice());
+    }
 
     private double calculateReservationPrice(){
-        return 0;
+        double totalPrice = 0;
+
+        for (Service service : services) {
+            totalPrice += service.getPrice();
+        }
+        if (customer != null && customer.getMember() != null) {
+            String membership = customer.getMember().getMembershipName();
+
+            if ("Silver".equalsIgnoreCase(membership)) {
+                totalPrice *= 0.95;
+            } else if ("Gold".equalsIgnoreCase(membership)) {
+                totalPrice *= 0.90;
+            }
+            return totalPrice;
+        }
+        return totalPrice;
     }
 }
