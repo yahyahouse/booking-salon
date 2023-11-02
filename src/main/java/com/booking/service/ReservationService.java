@@ -125,8 +125,8 @@ public class ReservationService {
                     .findFirst()
                     .orElse(null);
             if (reservation != null) {
-                if (workstage.equals("Finish") || workstage.equals("Canceled")) {
-                    if (workstage.equals("Canceled")) {
+                if ("Finish".equals(workstage) || "Canceled".equals(workstage)) {
+                    if ("Canceled".equals(workstage)) {
                         reservation.getCustomer().setWallet(reservation.getCustomer().getWallet() + reservation.getReservationPrice());
                     }
                     reservation.setWorkstage(workstage);

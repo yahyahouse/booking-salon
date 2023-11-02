@@ -30,12 +30,12 @@ public class PrintService {
     // Function yang dibuat hanya sebgai contoh bisa disesuaikan kembali
     public void showRecentReservation(List<Reservation> reservationList) {
         int num = 1;
-        System.out.printf("| %-4s | %-4s | %-11s | %-15s | %-15s | %-15s | %-10s |\n",
+        System.out.printf("| %-10s | %-10s | %-15s | %-25s | %-15s | %-15s | %-10s |\n",
                 "No.", "ID", "Nama Customer", "Service", "Biaya Service", "Pegawai", "Workstage");
         System.out.println("+========================================================================================+");
         for (Reservation reservation : reservationList) {
             if (reservation.getWorkstage().equalsIgnoreCase("In process")) {
-                System.out.printf("| %-4s | %-4s | %-11s | %-15s | %-15s | %-15s | %-10s |\n",
+                System.out.printf("| %-10s | %-10s | %-15s | %-25s | %-15s | %-15s | %-10s |\n",
                         num, reservation.getReservationId(), reservation.getCustomer().getName(),
                         printServices(reservation.getServices()), reservation.getReservationPrice(),
                         reservation.getEmployee().getName(), reservation.getWorkstage());
@@ -46,7 +46,7 @@ public class PrintService {
 
     public void showAllCustomer(List<Person> allPersons) {
         int num = 1;
-        System.out.printf("| %-4s | %-4s | %-11s | %-15s | %-15s | %-15s |\n",
+        System.out.printf("| %-10s | %-10s | %-15s | %-15s | %-15s | %-15s |\n",
                 "No.", "ID", "Nama Customer", "Alamat", "Membership", "Uang");
         System.out.println("+========================================================================================+");
         List<Customer> customers = allPersons.stream()
@@ -54,7 +54,7 @@ public class PrintService {
                 .map(Customer.class::cast)
                 .collect(Collectors.toList());
         for (Customer customer : customers) {
-            System.out.printf("| %-4s | %-4s | %-11s | %-15s | %-15s | %-15s |\n",
+            System.out.printf("| %-10s | %-10s | %-15s | %-15s | %-15s | %-15s |\n",
                     num, customer.getId(), customer.getName(),
                     customer.getAddress(),customer.getMember().getMembershipName(),customer.getWallet());
             num++;
@@ -63,27 +63,27 @@ public class PrintService {
 
     public void showAllEmployee(List<Person> allPersons) {
         int num = 1;
-        System.out.printf("| %-4s | %-4s | %-11s | %-15s | %-15s |\n",
-                "No.", "ID", "Nama ", "Alamat", "Pengalaman");
+        System.out.printf("| %-10s | %-10s | %-11s | %-15s | %-15s |\n",
+                "No.", "ID", "Nama", "Alamat", "Pengalaman");
         System.out.println("+========================================================================================+");
         List<Employee> employees = allPersons.stream()
                 .filter(Employee.class::isInstance)
                 .map(Employee.class::cast)
                 .collect(Collectors.toList());
         for (Employee employee : employees) {
-            System.out.printf("| %-4s | %-4s | %-11s | %-15s | %-15s |\n",
+            System.out.printf("| %-10s | %-10s | %-11s | %-15s | %-15s |\n",
                     num, employee.getId(),employee.getName(),employee.getAddress(),employee.getExperience());
             num++;
         }
     }
     public void showAllService(List<Service> allServices) {
         int num = 1;
-        System.out.printf("| %-4s | %-4s | %-11s | %-15s |\n",
+        System.out.printf("| %-10s | %-10s | %-25s | %-15s |\n",
                 "No.", "ID", "Nama ", "Harga");
         System.out.println("+========================================================================================+");
 
         for (Service service : allServices) {
-            System.out.printf("| %-4s | %-4s | %-11s | %-15s |\n",
+            System.out.printf("| %-10s | %-10s | %-25s | %-15s |\n",
                     num, service.getServiceId(), service.getServiceName(), service.getPrice());
             num++;
         }
@@ -91,7 +91,7 @@ public class PrintService {
 
     public void showHistoryReservation(List<Reservation> allReservation) {
         int num = 1;
-        System.out.printf("| %-4s | %-4s | %-11s | %-15s | %-15s | %-15s |\n",
+        System.out.printf("| %-10s | %-10s | %-11s | %-15s | %-15s | %-15s |\n",
                 "No.", "ID", "Nama ", "Service", "Total Biaya","Workstage");
         System.out.println("+========================================================================================+");
         List<Reservation> reservations = allReservation.stream()
@@ -99,7 +99,7 @@ public class PrintService {
                 .map(Reservation.class::cast)
                 .collect(Collectors.toList());
         for (Reservation reservation : reservations) {
-            System.out.printf("| %-4s | %-4s | %-11s | %-15s | %-15s | %-15s |\n",
+            System.out.printf("| %-10s | %-10s | %-11s | %-15s | %-15s | %-15s |\n",
                     num, reservation.getReservationId(),reservation.getCustomer().getName(),printServices(reservation.getServices()),
                     reservation.getReservationPrice(),reservation.getWorkstage());
             num++;
