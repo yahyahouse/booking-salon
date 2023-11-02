@@ -1,9 +1,3 @@
 
-£
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¿½Ž¹ùÿÿÿÿ8â©Ž‰¹1
 \
-java:S1118	":Add a private constructor to hide the implicit public one.(ÌÆ»Èùÿÿÿÿ8â©Ž‰¹1
-R
-java:S1128"6Remove this unused import 'com.booking.models.Person'.(ã±Ïs8Ò–É‰¹1
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Ò–É‰¹1
+java:S1118":Add a private constructor to hide the implicit public one.(ÌÆ»Èùÿÿÿÿ8â©Ž‰¹1

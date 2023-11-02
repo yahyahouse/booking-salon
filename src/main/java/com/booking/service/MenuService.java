@@ -20,12 +20,12 @@ public class MenuService {
 
     public static void mainMenu() {
         String[] mainMenuArr = {"Show Data", "Create Reservation", "Complete/cancel reservation", "Exit"};
-        String[] subMenuArr = {"Recent Reservation", "Show Customer", "Show Available Employee", "Back to main menu"};
-    
+        String[] subMenuArr = {"Recent Reservation", "Show Customer", "Show Available Employee", "Tampilkan History Reservation + Total Keuntungan", "Back to main menu"};
+
         int optionMainMenu;
         int optionSubMenu;
 
-		boolean backToMainMenu = false;
+        boolean backToMainMenu = false;
         boolean backToSubMenu = false;
         do {
             PrintService.printMenu("Main Menu", mainMenuArr);
@@ -56,7 +56,7 @@ public class MenuService {
                     } while (!backToSubMenu);
                     break;
                 case 2:
-                    reservationService.createReservation(personList,serviceList,reservationList);
+                    reservationService.createReservation(personList, serviceList, reservationList);
                     break;
                 case 3:
                     reservationService.editReservationWorkstage(reservationList);
@@ -66,6 +66,6 @@ public class MenuService {
                     break;
             }
         } while (!backToMainMenu);
-		
-	}
+
+    }
 }

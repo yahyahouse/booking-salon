@@ -2,9 +2,7 @@ package com.booking.service;
 
 import com.booking.models.Customer;
 import com.booking.models.Employee;
-import com.booking.models.Person;
 
-import java.util.List;
 
 public class ValidationService {
     // Buatlah function sesuai dengan kebutuhan
@@ -21,7 +19,4 @@ public class ValidationService {
         return null;
     }
 
-    public static void validateCustomerId(){
-
-    }
 }

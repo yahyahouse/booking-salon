@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class ReservationService {
     private static PrintService printService = new PrintService();
@@ -104,23 +105,39 @@ public class ReservationService {
     }
 
     public void editReservationWorkstage(List<Reservation> reservations) {
-        printService.showRecentReservation(reservations);
-        System.out.println("Silahkan Masukkan Reservation Id: ");
-        String reservationId = scanner.nextLine();
+        List<Reservation> reservationList = reservations.stream()
+                .filter(reservation -> reservation.getWorkstage().equals("In Process"))
+                .collect(Collectors.toList());
+        if (reservationList.isEmpty()) {
+            System.out.println("Reservation kosong");
 
-        System.out.println("Selesaikan Reservasi ");
-        String workstage = scanner.nextLine();
-
-
-        Reservation reservation = reservations.stream()
-                .filter(reservation1 -> reservation1.getReservationId().equals(reservationId))
-                .findFirst()
-                .orElse(null);
-        if (reservation != null) {
-            reservation.setWorkstage(workstage);
-            System.out.println("Reservasi dengan id " + reservationId + " sudah " + workstage);
         } else {
-            System.out.println("Reservation dengan ID " + reservationId + " tidak ditemukan.");
+            printService.showRecentReservation(reservations);
+            System.out.println("Silahkan Masukkan Reservation Id: ");
+            String reservationId = scanner.nextLine();
+
+            System.out.println("Selesaikan Reservasi ");
+            String workstage = scanner.nextLine();
+
+
+            Reservation reservation = reservations.stream()
+                    .filter(reservation1 -> reservation1.getReservationId().equals(reservationId))
+                    .findFirst()
+                    .orElse(null);
+            if (reservation != null) {
+                if (workstage.equals("Finish") || workstage.equals("Canceled")) {
+                    if (workstage.equals("Canceled")) {
+                        reservation.getCustomer().setWallet(reservation.getCustomer().getWallet() + reservation.getReservationPrice());
+                    }
+                    reservation.setWorkstage(workstage);
+                    System.out.println("Reservasi dengan id " + reservationId + " sudah " + workstage);
+                } else {
+                    System.out.println("Workstage tidak sesuai");
+                }
+
+            } else {
+                System.out.println("Reservation dengan ID " + reservationId + " tidak ditemukan.");
+            }
         }
     }
 
