@@ -120,7 +120,7 @@ public class ReservationService {
                 .filter(reservation -> reservation.getWorkstage().equals("In Process"))
                 .collect(Collectors.toList());
         if (reservationList.isEmpty()) {
-            System.out.println("Reservation kosong");
+            System.out.println("Reservation yang sudah selesai atau dibatalkan semuanya");
 
         } else {
             printService.showRecentReservation(reservations);
