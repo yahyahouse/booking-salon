@@ -95,7 +95,7 @@ public class PrintService {
                 "No.", "ID", "Nama ", "Service", "Total Biaya","Workstage");
         System.out.println("+========================================================================================+");
         List<Reservation> reservations = allReservation.stream()
-                .filter(reservation -> reservation.getWorkstage().equals("Finish")||reservation.getWorkstage().equals("Cancled"))
+                .filter(reservation -> reservation.getWorkstage().equals("Finish")||reservation.getWorkstage().equals("Canceled"))
                 .map(Reservation.class::cast)
                 .collect(Collectors.toList());
         for (Reservation reservation : reservations) {
@@ -104,7 +104,8 @@ public class PrintService {
                     reservation.getReservationPrice(),reservation.getWorkstage());
             num++;
         }
-        double totalKeuntungan = reservations.stream().mapToDouble(Reservation::getReservationPrice).sum();
+        double totalKeuntungan = reservations.stream().filter(reservation -> reservation.getWorkstage().equals("Finish"))
+                .mapToDouble(Reservation::getReservationPrice).sum();
         System.out.println("+========================================================================================+");
         System.out.println("Total Keuntungan : Rp. "+totalKeuntungan);
     }

@@ -46,13 +46,20 @@ public class ReservationService {
         boolean addMoreServices = true;
         List<Service> selectedServices = new ArrayList<>();
 
+
+        boolean allServicesSelected = false;
         while (addMoreServices) {
+            if (allServicesSelected) {
+                System.out.println("Anda telah memilih semua layanan yang tersedia.");
+                break;
+            }
+
             System.out.print("Silahkan Masukkan Service Id: ");
             String serviceId = scanner.nextLine();
 
 
             if (selectedServices.stream().anyMatch(service -> service.getServiceId().equals(serviceId))) {
-                System.out.println("Service dengan ID yang sama sudah dipilih sebelumnya.");
+                System.out.println("Service sudah dipilih");
             } else {
                 Service selectedService = services.stream()
                         .filter(service -> service.getServiceId().equals(serviceId))
@@ -64,8 +71,12 @@ public class ReservationService {
                     System.out.print("Ingin pilih service yang lain (Y/T)? ");
                     String choice = scanner.nextLine();
                     addMoreServices = choice.equalsIgnoreCase("Y");
+
+                    if (selectedServices.size() == services.size()) {
+                        allServicesSelected = true;
+                    }
                 } else {
-                    System.out.println("Service dengan ID yang dimasukkan tidak ditemukan.");
+                    System.out.println("Service yang dicari tidak tersedia");
                 }
             }
 
